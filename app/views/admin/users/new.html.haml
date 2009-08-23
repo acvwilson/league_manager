@@ -1,0 +1,20 @@
+.container
+  - form_for @user, :url => admin_users_path, :html => {:class => 'bp'} do |f|
+    %fieldset
+      %legend 
+        New User
+        
+      %p
+        = f.label :first_name
+        = f.text_field :first_name, :class => 'text'
+        
+      %p
+        = f.label :last_name
+        = f.text_field :last_name, :class => 'text'
+    
+      %p
+        = f.label :rank
+        = f.select :rank, (0..9)
+      
+      %p
+        = f.submit 'Create'

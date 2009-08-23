@@ -1,0 +1,18 @@
+.span-1
+  = link_to 'New User', new_admin_user_path
+
+%hr
+
+%h2 User List
+
+%hr
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Rank
+  %tbody
+    = render :partial => 'user', :collection => @users
+    
+= will_paginate @users

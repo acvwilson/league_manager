@@ -6,5 +6,19 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
 
-  %body
-    =yield
+  %body.three-col.bp
+    #container
+      %h1
+        League Manager
+      %hr
+      
+      #notifications.span-24.last
+        - if flash[:error]
+          .error= flash[:error]
+        - if flash[:notice]  
+          .notice= flash[:notice]
+        - if flash[:success]
+          .success= flash[:success]
+    
+      #content
+        =yield
