@@ -62,16 +62,32 @@ describe Admin::UsersController do
     end
     
     describe "with successful save" do
-      it "sets the flash notice" do
+      it "sets the flash message" do
         doittoit
-        flash[:notice].should eql('James Dean was successfully added')
+        flash[:success].should eql('James Dean was successfully added')
       end
       
       it "redirects to the index" do
         doittoit
         response.should redirect_to(admin_users_path)
       end
-
+    end
+    
+    describe "with failed save" do
+      before(:each) do
+        @james.stub!(:save!).and_return(false)
+        @james.stub!(:errors).and_return(mock('errors', :full_messages => 'you broke it!'))
+      end
+      
+      it "sets the flash message" do
+        doittoit
+        flash[:error].should eql('you broke it!')
+      end
+      
+      it "re-renders the new action" do
+        controller.should_receive(:render).with(:new)
+        doittoit
+      end
     end
   end
 end

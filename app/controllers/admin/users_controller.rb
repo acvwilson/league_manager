@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
         wants.html {redirect_to admin_users_path}
       else
         flash[:error] = @user.errors.full_messages
-        wants.html {render 'new'}
+        wants.html {render :new}
       end
     end
   end
