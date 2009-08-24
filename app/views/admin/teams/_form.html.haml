@@ -1,3 +1,7 @@
 %p
   = f.label :name
   = f.text_field :name, :class => 'text'
+  
+%p
+  = f.label :league_id, 'League'
+  = f.collection_select :league_id, League.all, :id, :name

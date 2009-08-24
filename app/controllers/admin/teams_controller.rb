@@ -24,4 +24,18 @@ class Admin::TeamsController < ApplicationController
   def edit
     @team = Team.find(params[:id], :include => 'users')
   end
+  
+  def update
+    @team = Team.find(params[:id])
+    
+    respond_to do |wants|
+      if @team.update_attributes(params[:team])
+        flash[:success] = "'#{@team.name}' was successfully updated"
+        wants.html {redirect_to :back}
+      else
+        flash[:error] = @team.errors.full_messages
+        wants.html {render :edit}
+      end
+    end
+  end
 end

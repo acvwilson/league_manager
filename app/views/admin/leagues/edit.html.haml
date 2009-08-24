@@ -1,0 +1,41 @@
+.container
+  - form_for @league, :url => admin_league_path(@league), :html => {:class => 'bp'} do |f|
+    %fieldset
+      %legend 
+        Edit - #{@league.name}
+      
+      = render :partial => 'form', :locals => {:f => f}
+      
+      = f.submit 'Update'
+      
+%table
+  %caption
+    Teams in the league:
+  %thead
+    %tr
+      %th{:colspan => 2}
+        Name
+  %tbody
+    = render :partial => 'admin/teams/team', :collection => @league.teams
+  
+  
+- form_tag nil, :class => 'bp', :id => 'add_team', :method => :put do
+  %fieldset
+    %legend
+      Add a team to #{@league.name}
+    
+    = hidden_field_tag 'team[league_id]', @league.id
+    
+    %p
+      = collection_select nil, :id, Team.all, :id, :name, {:prompt => true}
+      
+    %p
+      = submit_tag 'Add Team'
+      
+:javascript
+  $(function(){
+    $("#add_team").submit(function(){
+      $('#add_team').attr('action', '#{admin_teams_path}/' + $('#add_team #_id').val())
+      return true;
+    });
+  });

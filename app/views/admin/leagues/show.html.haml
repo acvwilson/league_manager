@@ -1,0 +1,29 @@
+%h2
+  League - #{@league.name}
+  
+%dl
+  %dt
+    Season
+  %dd
+    = @league.season
+  %dt
+    Sport
+  %dd
+    = @league.sport
+    
+
+
+%table
+  %caption
+    Teams in the league:
+  - if @league.teams.blank?
+    %tr
+      %td
+        None... #{ link_to 'add them', edit_admin_league_path(@league) }?
+  - else
+    %thead
+      %tr
+        %th{:colspan => 2}
+          Name
+    %tbody
+      = render :partial => 'admin/teams/team', :collection => @league.teams

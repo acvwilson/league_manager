@@ -4,17 +4,7 @@
       %legend 
         New League
         
-      %p
-        = f.label :name
-        = f.text_field :name, :class => 'text'
-        
-      %p
-        = f.label :season
-        = f.select :season, ['Winter', 'Spring', 'Summer', 'Fall']
-    
-      %p
-        = f.label :sport
-        = f.select :sport, ['Ultimate', 'Goaltimate', 'Football', 'Soccer', 'Hockey', 'Basketball']
+      = render :partial => 'form', :locals => {:f => f}
       
       %p
         = f.submit 'Create'

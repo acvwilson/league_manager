@@ -111,4 +111,56 @@ describe Admin::TeamsController do
       doittoit
     end
   end
+  
+  describe "PUT 'update'" do
+    before(:each) do
+      @yellow_jackets_hash = {:name => 'The Yellow Jackets', :league_id => 1}
+      @yellow_jackets = mock_model(Team, @yellow_jackets_hash.merge(:update_attributes => true))
+      Team.stub!(:find).and_return(@yellow_jackets)
+      request.env['HTTP_REFERER'] = 'http://example.com'
+    end
+    
+    def doittoit
+      put :update, :id => 2, :team => @yellow_jackets_hash
+    end
+    
+    it "initializes a new team" do
+      Team.should_receive(:find).with('2').and_return(@yellow_jackets)
+      doittoit
+    end
+    
+    it "attempts to save the team" do
+      @yellow_jackets.should_receive(:update_attributes).and_return(true)
+      doittoit
+    end
+    
+    describe "with successful save" do
+      it "sets the flash message" do
+        doittoit
+        flash[:success].should eql("'The Yellow Jackets' was successfully updated")
+      end
+      
+      it "redirects to the index" do
+        doittoit
+        response.should be_redirect
+      end
+    end
+    
+    describe "with failed save" do
+      before(:each) do
+        @yellow_jackets.stub!(:update_attributes).and_return(false)
+        @yellow_jackets.stub!(:errors).and_return(mock('errors', :full_messages => 'you broke it!'))
+      end
+      
+      it "sets the flash message" do
+        doittoit
+        flash[:error].should eql('you broke it!')
+      end
+      
+      it "re-renders the new action" do
+        controller.should_receive(:render).with(:edit)
+        doittoit
+      end
+    end
+  end
 end

@@ -90,4 +90,97 @@ describe Admin::LeaguesController do
       end
     end
   end
+  
+  describe "GET 'show'" do
+    before(:each) do
+      @summer_league = mock_model(League)
+      League.stub!(:find).and_return(@summer_league)
+    end
+    
+    def doittoit
+      get :show, :id => 1
+    end
+    
+    it "is a success" do
+      doittoit
+      response.should be_success
+    end
+    
+    it "looks up the team" do
+      League.should_receive(:find).with('1', :include => :teams).and_return(@summer_league)
+      doittoit
+    end
+  end
+  
+  describe "GET 'edit'" do
+    before(:each) do
+      @summer_league = mock_model(League)
+      League.stub!(:find).and_return(@summer_league)
+    end
+    
+    def doittoit
+      get :edit, :id => 1
+    end
+    
+    it "is a success" do
+      doittoit
+      response.should be_success
+    end
+    
+    it "looks up the team" do
+      League.should_receive(:find).with('1', :include => :teams).and_return(@summer_league)
+      doittoit
+    end
+  end
+  
+  describe "PUT 'update'" do
+    before(:each) do
+      @summer_league_hash = {:name => 'Summer League', :sport => 'Ultimate', :season => 'Summer'}
+      @summer_league = mock_model(League, @summer_league_hash.merge(:update_attributes => true))
+      League.stub!(:find).and_return(@summer_league)
+    end
+    
+    def doittoit
+      put :update, :id => 2, :league => @summer_league_hash
+    end
+    
+    it "initializes a new league" do
+      League.should_receive(:find).with('2').and_return(@summer_league)
+      doittoit
+    end
+    
+    it "attempts to save the league" do
+      @summer_league.should_receive(:update_attributes).and_return(true)
+      doittoit
+    end
+    
+    describe "with successful save" do
+      it "sets the flash message" do
+        doittoit
+        flash[:success].should eql("'Summer League' was successfully updated")
+      end
+      
+      it "redirects to the index" do
+        doittoit
+        response.should redirect_to(admin_leagues_path)
+      end
+    end
+    
+    describe "with failed save" do
+      before(:each) do
+        @summer_league.stub!(:update_attributes).and_return(false)
+        @summer_league.stub!(:errors).and_return(mock('errors', :full_messages => mock('messages', :to_sentence => 'you broke it!')))
+      end
+      
+      it "sets the flash message" do
+        doittoit
+        flash[:error].should eql('you broke it!')
+      end
+      
+      it "re-renders the new action" do
+        controller.should_receive(:render).with(:edit)
+        doittoit
+      end
+    end
+  end
 end

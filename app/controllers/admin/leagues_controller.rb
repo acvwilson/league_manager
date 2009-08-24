@@ -7,6 +7,10 @@ class Admin::LeaguesController < ApplicationController
     @league = League.new
   end
   
+  def show
+    @league = League.find(params[:id], :include => :teams)
+  end
+  
   def create
     @league = League.new(params[:league])
     
@@ -17,6 +21,24 @@ class Admin::LeaguesController < ApplicationController
       else
         flash[:error] = @league.errors.full_messages.to_sentence
         wants.html {render :new}
+      end
+    end
+  end
+  
+  def edit
+    @league = League.find(params[:id], :include => :teams)
+  end
+  
+  def update
+    @league = League.find(params[:id])
+    
+    respond_to do |wants|
+      if @league.update_attributes(params[:league])
+        flash[:success] = "'#{@league.name}' was successfully updated"
+        wants.html {redirect_to admin_leagues_path}
+      else
+        flash[:error] = @league.errors.full_messages.to_sentence
+        wants.html {render :edit}
       end
     end
   end

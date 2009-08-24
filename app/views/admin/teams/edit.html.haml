@@ -1,4 +1,4 @@
-- form_for @team, :url => admin_teams_path, :html => {:class => 'bp'} do |f|
+- form_for @team, :url => admin_team_path(@team), :html => {:class => 'bp'} do |f|
   %fieldset
     %legend 
       Edit - #{@team.name} 
