@@ -9,14 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090824212940) do
+ActiveRecord::Schema.define(:version => 20090824225750) do
 
   create_table "leagues", :force => true do |t|
     t.string   "name"
-    t.string   "season"
     t.string   "sport"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   create_table "teams", :force => true do |t|

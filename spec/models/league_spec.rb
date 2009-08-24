@@ -4,8 +4,9 @@ describe League do
   before(:each) do
     @valid_attributes = {
       :name => "value for name",
-      :season => "value for season",
-      :sport => "value for sport"
+      :sport => "value for sport",
+      :start_date => Date.today,
+      :end_date => 2.days.from_now.to_date
     }
   end
 

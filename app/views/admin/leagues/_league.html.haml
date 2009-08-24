@@ -2,9 +2,11 @@
   %td
     = league.name
   %td
-    = league.season
-  %td
     = league.sport
+  %td
+    = league.start_date.to_s(:db)
+  %td
+    = league.start_date.to_S(:db)
   %td
     = link_to 'Edit/Show', edit_admin_league_path(league)
   
