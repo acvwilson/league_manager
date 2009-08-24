@@ -32,6 +32,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin do |admin|
     admin.resources :users
+    admin.resources :teams
+    admin.resources :leagues
+    admin.resources :teams_users
   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.

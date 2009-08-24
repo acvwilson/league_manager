@@ -1,11 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe Admin::UsersController do
+describe Admin::LeaguesController do
 
   describe "GET 'index'" do
     before(:each) do
-      @users = [mock_model(User)]
-      User.stub!(:paginate).and_return(@users)
+      @leagues = [mock_model(League)]
+      League.stub!(:paginate).and_return(@leagues)
     end
     
     def doittoit
@@ -17,8 +17,8 @@ describe Admin::UsersController do
       response.should be_success
     end
     
-    it "paginates the users" do
-      User.should_receive(:paginate).with(hash_including(:order => 'last_name')).and_return(@users)
+    it "paginates the leagues" do
+      League.should_receive(:paginate).with(hash_including(:order => 'sport, season, name')).and_return(@leagues)
       doittoit
     end
   end
@@ -34,49 +34,49 @@ describe Admin::UsersController do
       response.should be_success
     end
     
-    it "initializes a new user" do
-      User.should_receive(:new)
+    it "initializes a new league" do
+      League.should_receive(:new)
       doittoit
     end
   end
   
   describe "POST 'create'" do
     before(:each) do
-      @james_hash = {:first_name => 'James', :last_name => 'Dean', :rank => '9'}
-      @james = mock_model(User, @james_hash.merge(:save => true, :name => 'James Dean'))
-      User.stub!(:new).and_return(@james)
+      @summer_league_hash = {:name => 'Summer League', :sport => 'Ultimate', :season => 'Summer'}
+      @summer_league = mock_model(League, @summer_league_hash.merge(:save => true))
+      League.stub!(:new).and_return(@summer_league)
     end
     
     def doittoit
-      post :create, :user => @james_hash
+      post :create, :league => @summer_league_hash
     end
     
-    it "initializes a new user" do
-      User.should_receive(:new).and_return(@james)
+    it "initializes a new league" do
+      League.should_receive(:new).and_return(@summer_league)
       doittoit
     end
     
-    it "attempts to save the user" do
-      @james.should_receive(:save).and_return(true)
+    it "attempts to save the league" do
+      @summer_league.should_receive(:save).and_return(true)
       doittoit
     end
     
     describe "with successful save" do
       it "sets the flash message" do
         doittoit
-        flash[:success].should eql('James Dean was successfully added')
+        flash[:success].should eql("'Summer League' was successfully added")
       end
       
       it "redirects to the index" do
         doittoit
-        response.should redirect_to(admin_users_path)
+        response.should redirect_to(admin_leagues_path)
       end
     end
     
     describe "with failed save" do
       before(:each) do
-        @james.stub!(:save).and_return(false)
-        @james.stub!(:errors).and_return(mock('errors', :full_messages => mock('messages', :to_sentence => 'you broke it!')))
+        @summer_league.stub!(:save).and_return(false)
+        @summer_league.stub!(:errors).and_return(mock('errors', :full_messages => mock('messages', :to_sentence => 'you broke it!')))
       end
       
       it "sets the flash message" do

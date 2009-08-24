@@ -1,0 +1,34 @@
+- form_for @team, :url => admin_teams_path, :html => {:class => 'bp'} do |f|
+  %fieldset
+    %legend 
+      Edit - #{@team.name} 
+      
+    = render :partial => 'form', :locals => {:f => f}
+      
+    %p
+      = f.submit 'Update'
+      
+%table
+  %thead
+    %tr
+      %th
+        Name
+      %th
+        Rank
+  %tbody
+    = render :partial => 'admin/users/user', :collection => @team.users
+      
+      
+- form_tag admin_teams_users_path, :class => 'bp' do
+  %fieldset
+    %legend
+      Add Player - #{@team.name}
+      
+    = hidden_field_tag :team_id, @team.id
+    
+    %p
+      = label :user_id, 'Player Name'
+      = collection_select nil, :user_id, User.all, :id, :name, {:prompt => true}
+      
+    %p
+      = submit_tag 'Add Player'

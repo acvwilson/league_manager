@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  season: MyString
+  sport: MyString
+
+two:
+  name: MyString
+  season: MyString
+  sport: MyString

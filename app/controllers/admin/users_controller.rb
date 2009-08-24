@@ -11,11 +11,11 @@ class Admin::UsersController < ApplicationController
     @user = User.new(params[:user])
     
     respond_to do |wants|
-      if @user.save!
+      if @user.save
         flash[:success] = "#{@user.name} was successfully added"
         wants.html {redirect_to admin_users_path}
       else
-        flash[:error] = @user.errors.full_messages
+        flash[:error] = @user.errors.full_messages.to_sentence
         wants.html {render :new}
       end
     end

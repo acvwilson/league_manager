@@ -1,0 +1,19 @@
+.span-1
+  = link_to 'New League', new_admin_league_path
+
+%hr
+
+%h2 League List
+
+%hr
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Season
+      %th Sport
+  %tbody
+    = render :partial => 'league', :collection => @leagues
+    
+= will_paginate @leagues

@@ -1,0 +1,17 @@
+.span-1
+  = link_to 'New Team', new_admin_team_path
+
+%hr
+
+%h2 Team List
+
+%hr
+
+%table
+  %thead
+    %tr
+      %th{:colspan => 2} Name
+  %tbody
+    = render :partial => 'team', :collection => @teams
+    
+= will_paginate @teams
