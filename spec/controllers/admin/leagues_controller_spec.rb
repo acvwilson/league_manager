@@ -18,7 +18,7 @@ describe Admin::LeaguesController do
     end
     
     it "paginates the leagues" do
-      League.should_receive(:paginate).with(hash_including(:order => 'sport, season, name')).and_return(@leagues)
+      League.should_receive(:paginate).with(hash_including(:order => 'start_date, name, sport')).and_return(@leagues)
       doittoit
     end
   end

@@ -1,6 +1,6 @@
 class Admin::LeaguesController < ApplicationController
   def index
-    @leagues = League.paginate :page => params[:page], :order => 'sport, season, name'
+    @leagues = League.paginate :page => params[:page], :order => 'start_date, name, sport'
   end
   
   def new
