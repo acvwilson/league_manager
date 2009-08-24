@@ -98,7 +98,7 @@ describe Admin::TeamsController do
     end
     
     def doittoit
-      get :edit, :team_id => 1
+      get :edit, :id => 1
     end
     
     it "is a success" do
@@ -107,7 +107,7 @@ describe Admin::TeamsController do
     end
     
     it "initializes a new team" do
-      Team.should_receive(:find).with('1').and_return(@team)
+      Team.should_receive(:find).with('1', :include => 'users').and_return(@team)
       doittoit
     end
   end

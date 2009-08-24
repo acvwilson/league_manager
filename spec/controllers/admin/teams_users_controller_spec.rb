@@ -15,7 +15,7 @@ describe Admin::TeamsUsersController do
     
     it "should redirect to team edit" do
       doittoit
-      response.should redirect_to(admin_team_path(@team))
+      response.should redirect_to(edit_admin_team_path(@team))
     end
     
     it "looks up the user" do
