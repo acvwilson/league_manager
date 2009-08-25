@@ -1,0 +1,65 @@
+#navigation_container
+  position: relative
+  height: 56px
+  color: #E0E0E0
+  width: 100%
+
+
+#navigation
+  position: relative
+  height: 32px
+  font-size: 12px
+  text-transform: uppercase
+  font-weight: bold
+  background: #fff url(/images/menu/pro_bg.gif) repeat-x bottom left
+  padding: 0 0 0 20px
+  border-bottom: 8px solid #77becf
+
+  ul
+    margin: 0
+    padding: 0
+    list-style-type: none
+    width: auto
+    float: left
+
+
+    li
+      display: block
+      float: left
+      margin: 0 1px
+
+      a
+        display: block
+        float: left
+        color: #EAF3F8
+        text-decoration: none
+        padding: 0 0 0 20px
+        height: 32px
+
+        span
+          padding: 12px 20px 0 0
+          height: 21px
+          float: left
+          font-weight:  normal
+          font-family: "Myriad Pro", Helvetica, Arial, Verdana, sans-serif
+
+      a:hover
+        color: #fff
+        background: transparent url(/images/menu/pro_bg-OVER.gif) repeat-x bottom left
+
+        span
+          display: block
+          width: auto
+          cursor: pointer
+
+      a.current, a.current:hover
+        color: #fff
+        background: #77becf url(/images/menu/pro_left-ON.gif) no-repeat top left
+        line-height: 275%
+
+      a.current span
+        display: block
+        padding: 3px 20px 0 0
+        width: auto
+        background: #77becf url(/images/menu/pro_right-ON.gif) no-repeat top right
+        height: 32px
