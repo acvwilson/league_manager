@@ -1,0 +1,9 @@
+%tr
+  %td
+    = game.home_team.name
+    %br
+    = game.away_team.name
+  %td
+    = game.start_time
+  %td
+    = link_to 'Edit Game', edit_admin_league_game_path(@league, game)

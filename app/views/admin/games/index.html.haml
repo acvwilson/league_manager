@@ -1,0 +1,18 @@
+%h2 Games List for #{@league.name}
+
+%hr
+
+%table
+  %thead
+    %tr
+      %th Teams
+      %th{:colspan => 2} Start Time
+  %tbody
+    = render :partial => 'game', :collection => @games
+    
+= will_paginate @games
+
+%hr
+
+.span-1
+  = link_to 'New Game', new_admin_league_game_path

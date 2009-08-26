@@ -1,0 +1,27 @@
+- content_for :head do
+  = javascript_include_tag 'jquery.utils.ui.js'
+  = stylesheet_link_tag 'jquery.timepickr.css'
+
+%p
+  = f.label :home_team_id, 'Home Team'
+  = f.collection_select :home_team_id, @league.teams, :id, :name
+  
+%p
+  = f.label :away_team_id, 'Away Team'
+  = f.collection_select :away_team_id, @league.teams, :id, :name
+
+%p
+  = label :game, 'Start Date'
+  = text_field_tag :game_date, nil, :class => 'text'
+
+%p
+  = label :game, 'Start Time'
+  = text_field_tag :game_time, nil, :class => 'text'
+
+:javascript
+  $(function(){
+    $('#game_date').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#game_time').timepickr({convention: 24});
+  });
+  
+

@@ -33,7 +33,9 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :users
     admin.resources :teams
-    admin.resources :leagues
+    admin.resources :leagues do |league|
+      league.resources :games
+    end
     admin.resources :teams_users
   end
 

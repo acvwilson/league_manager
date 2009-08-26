@@ -1,0 +1,9 @@
+- form_for @game, :url => admin_league_games_path(@league), :html => {:class => 'bp'} do |f|
+  %fieldset
+    %legend 
+      New Game for #{@league.name}
+      
+    = render :partial => 'form', :locals => {:f => f}
+    
+    %p
+      = f.submit 'Create'

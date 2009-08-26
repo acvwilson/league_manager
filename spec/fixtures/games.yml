@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  time: 2009-08-25 18:09:32
+  home_team_id: 1
+  away_team_id: 1
+  field_number: 1
+
+two:
+  time: 2009-08-25 18:09:32
+  home_team_id: 1
+  away_team_id: 1
+  field_number: 1
