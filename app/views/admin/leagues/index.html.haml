@@ -10,7 +10,10 @@
       %th Start Date
       %th{:colspan => 2} End Date
   %tbody
-    = render :partial => 'league', :collection => @leagues
+    - unless @leagues.blank?
+      = render :partial => 'league', :collection => @leagues
+    - else
+      You have not created any leagues. #{link_to 'Get started now!', new_admin_league_path}
     
 = will_paginate @leagues
 
