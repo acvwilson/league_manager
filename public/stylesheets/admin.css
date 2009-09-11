@@ -1,0 +1,65 @@
+/* line 1, ../../app/stylesheets/admin.sass */
+#navigation_container {
+  position: relative;
+  height: 56px;
+  color: #E0E0E0;
+  width: 100%; }
+
+/* line 8, ../../app/stylesheets/admin.sass */
+#navigation {
+  position: relative;
+  height: 32px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background: #fff url(/images/menu/pro_bg.gif) repeat-x bottom left;
+  padding: 0 0 0 20px;
+  border-bottom: 8px solid #77becf; }
+  /* line 18, ../../app/stylesheets/admin.sass */
+  #navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: auto;
+    float: left; }
+    /* line 26, ../../app/stylesheets/admin.sass */
+    #navigation ul li {
+      display: block;
+      float: left;
+      margin: 0 1px; }
+      /* line 31, ../../app/stylesheets/admin.sass */
+      #navigation ul li a {
+        display: block;
+        float: left;
+        color: #EAF3F8;
+        text-decoration: none;
+        padding: 0 0 0 20px;
+        height: 32px; }
+        /* line 39, ../../app/stylesheets/admin.sass */
+        #navigation ul li a span {
+          padding: 12px 20px 0 0;
+          height: 21px;
+          float: left;
+          font-weight: normal;
+          font-family: "Myriad Pro", Helvetica, Arial, Verdana, sans-serif; }
+      /* line 46, ../../app/stylesheets/admin.sass */
+      #navigation ul li a:hover {
+        color: #fff;
+        background: transparent url(/images/menu/pro_bg-OVER.gif) repeat-x bottom left; }
+        /* line 50, ../../app/stylesheets/admin.sass */
+        #navigation ul li a:hover span {
+          display: block;
+          width: auto;
+          cursor: pointer; }
+      /* line 55, ../../app/stylesheets/admin.sass */
+      #navigation ul li a.current, #navigation ul li a.current:hover {
+        color: #fff;
+        background: #77becf url(/images/menu/pro_left-ON.gif) no-repeat top left;
+        line-height: 275%; }
+      /* line 60, ../../app/stylesheets/admin.sass */
+      #navigation ul li a.current span {
+        display: block;
+        padding: 3px 20px 0 0;
+        width: auto;
+        background: #77becf url(/images/menu/pro_right-ON.gif) no-repeat top right;
+        height: 32px; }
