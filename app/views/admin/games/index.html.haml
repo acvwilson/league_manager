@@ -11,7 +11,9 @@
     - unless @games.blank?
       = render :partial => 'game', :collection => @games
     - else
-      You have not created any games. #{link_to 'Get started now!', new_admin_league_game_path}
+      %tr
+        %td{:colspan => 3}
+          You have not created any games. #{link_to 'Get started now!', new_admin_league_game_path}
     
 = will_paginate @games
 

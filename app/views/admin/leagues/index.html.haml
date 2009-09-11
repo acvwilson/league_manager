@@ -13,7 +13,9 @@
     - unless @leagues.blank?
       = render :partial => 'league', :collection => @leagues
     - else
-      You have not created any leagues. #{link_to 'Get started now!', new_admin_league_path}
+      %tr
+        %td{:colspan => 5}
+          You have not created any leagues. #{link_to 'Get started now!', new_admin_league_path}
     
 = will_paginate @leagues
 

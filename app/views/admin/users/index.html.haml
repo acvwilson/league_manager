@@ -11,7 +11,9 @@
     - unless @users.blank?
       = render :partial => 'user', :collection => @users
     - else
-      You have not created any users. #{link_to 'Get started now!', new_admin_user_path}
+      %tr
+        %td{:colspan => 2}
+          You have not created any users. #{link_to 'Get started now!', new_admin_user_path}
     
 = will_paginate @users
 

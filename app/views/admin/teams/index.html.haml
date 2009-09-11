@@ -10,7 +10,9 @@
     - unless @teams.blank?
       = render :partial => 'team', :collection => @teams
     - else
-      You have not created any teams. #{link_to 'Get started now!', new_admin_team_path}
+      %tr
+        %td{:colspan => 2}
+          You have not created any teams. #{link_to 'Get started now!', new_admin_team_path}
     
 = will_paginate @teams
 
