@@ -1,0 +1,9 @@
+- form.inputs do
+  = form.input :first_name
+  = form.input :last_name
+  %li#user_rank_input.string.required
+    = form.label :rank, 'Rank <abbr title="required">*</abbr>'
+    = form.select :rank, (0..9), :prompt => true
+  = form.input :email
+  = form.input :password
+  = form.input :password_confirmation, :label => "Confirm password"

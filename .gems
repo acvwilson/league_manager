@@ -1,2 +1,3 @@
 chriseppstein-compass --source gems.github.com
 mislav-will_paginate --source gems.github.com
+thoughtbot-clearance --source gems.github.com
